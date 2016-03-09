@@ -9,8 +9,29 @@ window.addEventListener('load', function() {
 		// skrijemo prekrivno okno
 		document.querySelector(".pokrivalo").style.display = "none";
 	}
+	// funkcija za dodajanje opomnikov na seznam
+	var dodajOpomnik = function(event) {
+		var nazivPolje = document.querySelector("#naziv_opomnika");
+		var casPolje = document.querySelector("#cas_opomnika");
+		var naziv = nazivPolje.value;
+		var cas = casPolje.value;
+		// pobrisemo prvotno vsebino vnosnih polj
+		nazivPolje.value = "";
+		casPolje.value = "";
+		
+		// dodamo html kodo v telo opomnikov
+		document.querySelector("#opomniki").innerHTML += " \
+			<div class='opomnik'> \
+			            <div class='naziv_opomnika'>"+naziv+"</div> \
+			            <div class='cas_opomnika'> Opomnik čez <span>"+cas+"</span> sekund.</div> \
+			</div> \
+		";
+		console.log("Dodal opomnik \""+naziv+"\" cakam "+cas+"s");
+	}
+	
 	// vezemo na listener gumba
 	document.querySelector("#prijavniGumb").addEventListener('click', izvediPrijavo);
+	document.querySelector("#dodajGumb").addEventListener('click',dodajOpomnik);
 		
 	//Posodobi opomnike
 	var posodobiOpomnike = function() {
